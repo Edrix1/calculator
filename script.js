@@ -18,10 +18,6 @@ function divide(a ,b) {
     } return a / b;
 }
 
-const firstNumber = 0;
-const secondNumber = 0;
-const operator = null;
-
 //operate function
 function operate(num1, operator, num2) {
    switch(operator) {
@@ -36,4 +32,41 @@ function operate(num1, operator, num2) {
     }
 }
 
-console.log(operate(10 , "-" , 3));
+//function that populates display when you click a number
+let currentValue = '0';
+const display = document.querySelector('.display');
+
+const numberButtons = document.querySelectorAll('.button');
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const number = button.textContent;
+
+        if (currentValue === '0') {
+            currentValue = number;
+        } else {
+            currentValue += number;
+        }
+        display.textContent = currentValue;
+    });
+});
+
+let firstNumber = '';
+let secondNumber = '';
+let operator = '';
+
+const operatorButtons = document.querySelectorAll('#operator');
+operatorButtons.forEach((button) => {
+    operatorButtons.addEventListener('click', () => {
+        operator = button.textContent;
+        updateDisplay(operator);
+    });
+});
+
+//clears calculator
+const clearButton = document.querySelector('.clear');
+clearButton.addEventListener('click', () => {
+firstNumber = '';
+secondNumber = '';
+operater = '';
+updateDisplay = '';
+});
